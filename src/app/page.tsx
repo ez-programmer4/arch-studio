@@ -7,7 +7,7 @@ import Services from "@/components/home/Services";
 import Testimonials from "@/components/home/Testimonials";
 import ContactCTA from "@/components/home/ContactCTA";
 import ClientLogos from "@/components/home/ClientLogos";
-
+import FeaturedProjects from "@/components/home/FeaturedProjects";
 const FEATURES = [
   {
     title: "Expert Team",
@@ -313,6 +313,7 @@ export default function HomePage() {
               </div>
             </div>
           </section>
+          <FeaturedProjects />
           <Services />
           <Testimonials />
           <ClientLogos />

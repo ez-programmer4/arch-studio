@@ -11,7 +11,7 @@ export default function Services() {
         "Delivering innovative architectural solutions that seamlessly integrate form, function, and sustainability.",
       icon: (
         <svg
-          className="w-10 h-10"
+          className="w-8 h-8"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -25,7 +25,7 @@ export default function Services() {
         </svg>
       ),
       link: "/approach",
-      gradient: "from-blue-600 to-cyan-500",
+      gradient: "from-amber-600 to-amber-700",
     },
     {
       title: "Interior Design",
@@ -33,7 +33,7 @@ export default function Services() {
         "Crafting refined interiors that elevate aesthetics while prioritizing comfort and practicality.",
       icon: (
         <svg
-          className="w-10 h-10"
+          className="w-8 h-8"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -47,7 +47,7 @@ export default function Services() {
         </svg>
       ),
       link: "/approach",
-      gradient: "from-purple-600 to-indigo-500",
+      gradient: "from-amber-600 to-amber-700",
     },
     {
       title: "Space Planning",
@@ -55,7 +55,7 @@ export default function Services() {
         "Optimizing spatial layouts with strategic precision to enhance functionality and flow.",
       icon: (
         <svg
-          className="w-10 h-10"
+          className="w-8 h-8"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -69,78 +69,75 @@ export default function Services() {
         </svg>
       ),
       link: "/approach",
-      gradient: "from-amber-600 to-orange-500",
+      gradient: "from-amber-600 to-amber-700",
     },
   ];
 
   return (
-    <section className="py-32 bg-white text-gray-900 overflow-hidden">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_0,rgba(0,0,0,0)_50%)] pointer-events-none"></div>
+    <section className="py-24 bg-white text-slate-900 overflow-hidden relative">
+      {/* Subtle background texture */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(180,83,9,0.02)_0,transparent_70%)] pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-7xl relative">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-semibold tracking-tight text-gray-900">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
             Our Expertise
           </h2>
-          <p className="mt-4 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Tailored solutions designed to transform visions into exceptional
-            spaces.
+            spaces
           </p>
         </motion.div>
 
-        {/* Horizontal Services Layout */}
-        <div className="relative">
-          <div className="flex justify-between items-center flex-col md:flex-row gap-8 md:gap-12">
-            {services.map((service, index) => (
+        {/* Services List */}
+        <div className="flex flex-col md:flex-row gap-12 md:gap-8 lg:gap-12">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: "easeOut",
+              }}
+              className="flex-1 flex flex-col items-center text-center px-4"
+            >
+              {/* Icon */}
               <motion.div
-                key={service.title}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.8,
-                  delay: index * 0.3,
-                  ease: "easeOut",
-                }}
-                className="relative flex flex-col items-center w-full md:w-1/3 group"
+                className={`w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br ${service.gradient} text-white mb-6`}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                {/* Icon */}
-                <div className="relative z-10 mb-6">
-                  <motion.div
-                    className={`w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br ${service.gradient} text-white shadow-lg`}
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {service.icon}
-                  </motion.div>
-                </div>
-
-                {/* Content */}
-                <div className="text-center">
-                  <h3 className="text-2xl md:text-3xl font-serif font-semibold text-gray-900 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-4 px-4">
-                    {service.description}
-                  </p>
-                  <Link
-                    href={service.link}
-                    className="text-sm font-medium text-blue-600 hover:text-blue-500 transition-colors duration-300 inline-flex items-center group-hover:translate-x-1"
-                  >
-                    Learn More <span className="ml-1">→</span>
-                  </Link>
-                </div>
+                {service.icon}
               </motion.div>
-            ))}
-          </div>
+
+              {/* Content */}
+              <h3 className="text-2xl font-serif font-semibold text-slate-900 mb-4">
+                {service.title}
+              </h3>
+              <p className="text-slate-600 mb-6 leading-relaxed">
+                {service.description}
+              </p>
+              <Link
+                href={service.link}
+                className="text-sm font-medium text-amber-600 hover:text-amber-700 transition-colors duration-300 inline-flex items-center group"
+              >
+                Learn more
+                <span className="ml-1.5 transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

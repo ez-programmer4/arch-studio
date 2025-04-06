@@ -40,7 +40,7 @@ export default function ProjectDetailsSidebar({
               </p>
 
               {/* Value */}
-              <p className="text-gray-800 text-sm leading-relaxed">
+              <div className="text-gray-800 text-sm leading-relaxed">
                 {Array.isArray(value) ? (
                   <ul className="list-none space-y-2">
                     {value.map((item, idx) => (
@@ -58,7 +58,7 @@ export default function ProjectDetailsSidebar({
                     {value}
                   </span>
                 )}
-              </p>
+              </div>
 
               {/* Subtle Hover Effect Line */}
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-amber-300 transition-all duration-300 group-hover:w-full" />

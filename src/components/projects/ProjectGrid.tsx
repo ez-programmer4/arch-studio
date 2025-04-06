@@ -152,13 +152,23 @@ export default function ProjectGrid() {
                         <Image
                           src={project.image}
                           alt={project.title}
-                          fill
+                          width={500}
+                          height={400}
                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          quality={85}
+                          onError={(e) => {
+                            console.error(
+                              `Failed to load image for ${project.title}: ${project.image}`
+                            );
+                            // Optionally set a fallback image from /public
+                            e.currentTarget.src = "/fallback-image.jpg"; // Ensure this exists
+                          }}
                         />
                       ) : (
                         <div className="h-full w-full bg-gray-200 flex items-center justify-center">
                           <span className="text-gray-500 text-sm">
-                            No Image
+                            No Image Available
                           </span>
                         </div>
                       )}

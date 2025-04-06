@@ -30,7 +30,7 @@ export default function ContactCTA() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Let’s Build Together
+            Let's Build Together
           </motion.span>
           <motion.h2
             className="text-4xl md:text-5xl font-serif font-bold mb-6 tracking-tight"
@@ -54,34 +54,38 @@ export default function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <Link
-              href="/contact"
-              className="relative inline-flex items-center justify-center px-10 py-4 bg-amber-500 text-white rounded-full font-medium overflow-hidden group shadow-lg hover:shadow-xl"
+            <motion.div
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              className="inline-block"
             >
-              <span className="relative z-10 flex items-center font-semibold">
-                Get in Touch
-                <svg
-                  className="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7m0 0l-7 7m7-7H5"
-                  />
-                </svg>
-              </span>
-              <motion.span
-                className="absolute inset-0 bg-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={{ scale: 0 }}
-                whileHover={{ scale: 1 }}
-              />
-            </Link>
+              <Link
+                href="/contact"
+                className="relative inline-flex items-center justify-center px-10 py-4 bg-amber-500 text-white rounded-full font-medium overflow-hidden group shadow-lg hover:shadow-xl"
+              >
+                <span className="relative z-10 flex items-center font-semibold">
+                  Get in Touch
+                  <svg
+                    className="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7m0 0l-7 7m7-7H5"
+                    />
+                  </svg>
+                </span>
+                <motion.span
+                  className="absolute inset-0 bg-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ scale: 0 }}
+                  whileHover={{ scale: 1 }}
+                />
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

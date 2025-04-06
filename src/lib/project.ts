@@ -20,17 +20,20 @@ export interface Project {
 
 export async function fetchProjects(): Promise<Project[]> {
   try {
-    // Simplified query that matches working fetchProjectById structure
     const query = `*[_type == "project"] {
       _id,
       id,
       title,
       category,
-      "image": image.asset->url, // Changed from image.upload.asset->url
+      "image": image.upload.asset->url,
+      "imageUrl": image.url,
       description,
       location,
       year,
-      "gallery": gallery[].asset->url,
+      "gallery": gallery[]{
+        "upload": upload.asset->url,
+        "url": url
+      },
       details{
         client,
         size,
@@ -40,20 +43,24 @@ export async function fetchProjects(): Promise<Project[]> {
       features
     }`;
 
-    // Remove problematic ordering that might fail
     const projects = await client.fetch(query);
-
-    console.log("Raw projects from Sanity:", projects); // Debug log
+    console.log("Raw projects from Sanity:", projects);
 
     return projects.map((project) => ({
-      id: project.id || project._id, // Fallback to _id if id missing
+      id: project.id || project._id,
       title: project.title || "",
       category: project.category || "Uncategorized",
-      image: project.image || null,
+      image: project.image
+        ? urlFor(project.image).url()
+        : project.imageUrl || null,
       description: project.description || "",
       location: project.location || "",
       year: project.year || "",
-      gallery: project.gallery || [],
+      gallery: Array.isArray(project.gallery)
+        ? project.gallery.map((img: any) =>
+            img.upload ? urlFor(img.upload).url() : img.url || null
+          )
+        : [],
       details: project.details || {},
       features: project.features || [],
     }));
